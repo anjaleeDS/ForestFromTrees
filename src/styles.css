@@ -1,0 +1,17 @@
+.grid { display: inline-flex; flex-direction: column; border: 2px solid #5a6b4a; }
+.grid-row { display: flex; }
+.tile {
+  position: relative; width: 40px; height: 40px; padding: 0;
+  border: 1px solid rgba(0,0,0,0.08); cursor: pointer; font-size: 22px; line-height: 1;
+}
+.tile-season { position: absolute; inset: 0; pointer-events: none; }
+.tile-placeable, .tile-resident { position: absolute; inset: 0; display: grid; place-items: center; }
+.tile-resident { font-size: 18px; transform: translateY(-2px); animation: settle 400ms ease-out; }
+@keyframes settle { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(-2px); } }
+.palette { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.palette-item { display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 8px; border: 2px solid transparent; border-radius: 8px; background: #f1f3ea; cursor: pointer; }
+.palette-item.selected { border-color: #5a6b4a; background: #e2e9d2; }
+.palette-item.erase.selected { border-color: #b0563a; }
+.palette-emoji { font-size: 22px; }
+.palette-label { font-size: 11px; }
