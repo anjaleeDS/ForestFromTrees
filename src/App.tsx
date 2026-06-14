@@ -36,7 +36,17 @@ export default function App() {
         <p className="tagline">Place habitat. Animals move in when it feels like home.</p>
       </header>
 
-      <SeasonControl season={state.season} onChange={s => dispatch({ type: 'SET_SEASON', season: s })} />
+      <div className="top-controls">
+        <SeasonControl season={state.season} onChange={s => dispatch({ type: 'SET_SEASON', season: s })} />
+        {state.placements.length > 0 && (
+          <button
+            className="clear-btn"
+            onClick={() => { if (confirm('Clear the whole forest and empty the journal? This starts over from a blank grid.')) dispatch({ type: 'RESET' }) }}
+          >
+            Clear forest
+          </button>
+        )}
+      </div>
       <Palette
         selected={selected}
         tool={tool}
