@@ -42,3 +42,9 @@
 .season-btn { padding: 6px 12px; border: 2px solid transparent; border-radius: 8px;
   background: #f1f3ea; cursor: pointer; }
 .season-btn.active { border-color: #5a6b4a; background: #e2e9d2; }
+
+:root { font-family: system-ui, sans-serif; color: #2c3424; }
+body { margin: 0; background: #eef2e6; }
+.app { max-width: 760px; margin: 0 auto; padding: 24px; }
+header h1 { margin: 0 0 4px; }
+.tagline { margin: 0 0 16px; color: #5a6b4a; }
