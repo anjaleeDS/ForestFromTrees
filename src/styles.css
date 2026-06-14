@@ -1,0 +1,52 @@
+.grid { display: inline-flex; flex-direction: column; border: 2px solid #5a6b4a; }
+.grid-row { display: flex; }
+.tile {
+  position: relative; width: 40px; height: 40px; padding: 0;
+  border: 1px solid rgba(0,0,0,0.08); cursor: pointer; font-size: 22px; line-height: 1;
+}
+.tile-season { position: absolute; inset: 0; pointer-events: none; }
+.tile-placeable, .tile-resident { position: absolute; inset: 0; display: grid; place-items: center; }
+.tile-resident { font-size: 18px; transform: translateY(-2px); animation: settle 400ms ease-out; }
+@keyframes settle { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(-2px); } }
+.palette { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+.palette-item { display: flex; flex-direction: column; align-items: center; gap: 2px;
+  padding: 6px 8px; border: 2px solid transparent; border-radius: 8px; background: #f1f3ea; cursor: pointer; }
+.palette-item.selected { border-color: #5a6b4a; background: #e2e9d2; }
+.palette-item.erase.selected { border-color: #b0563a; }
+.palette-emoji { font-size: 22px; }
+.palette-label { font-size: 11px; }
+.tile-debug-shade { position: absolute; inset: 0; background: rgba(40,40,90,0.35); pointer-events: none; }
+.tile-debug-field { position: absolute; inset: 30%; border-radius: 50%; background: rgba(40,120,200,0.7); pointer-events: none; }
+.debug-controls { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.journal { margin-top: 16px; }
+.journal-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.journal-entry { border: 1px solid #cdd5bf; border-radius: 10px; padding: 10px; background: #f7f9f1; }
+.journal-entry.locked { opacity: 0.85; }
+.journal-emoji { font-size: 28px; }
+.journal-emoji.silhouette { filter: grayscale(1) brightness(0.4); }
+.journal-name { font-weight: 600; }
+.journal-species { font-weight: 400; color: #5a6b4a; font-size: 12px; }
+.journal-personality { font-size: 13px; color: #444; margin-top: 4px; }
+.journal-hint { font-size: 12px; color: #8a8a7a; font-style: italic; margin-top: 4px; }
+.stars, .arrival-stars { color: #d8a72a; letter-spacing: 2px; }
+.arrival-card { position: fixed; right: 20px; bottom: 20px; width: 260px; padding: 16px;
+  border-radius: 14px; background: #fffdf5; box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  text-align: center; animation: slidein 350ms ease-out; }
+@keyframes slidein { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.arrival-emoji { font-size: 40px; }
+.arrival-title { font-weight: 600; margin: 6px 0; }
+.arrival-personality { font-size: 13px; color: #555; margin: 8px 0; }
+.arrival-dismiss { padding: 6px 14px; border: none; border-radius: 8px; background: #5a6b4a; color: #fff; cursor: pointer; }
+
+.season-control { display: flex; gap: 6px; margin-bottom: 12px; }
+.season-btn { padding: 6px 12px; border: 2px solid transparent; border-radius: 8px;
+  background: #f1f3ea; cursor: pointer; }
+.season-btn.active { border-color: #5a6b4a; background: #e2e9d2; }
+
+:root { font-family: system-ui, sans-serif; color: #2c3424; }
+body { margin: 0; background: #eef2e6; }
+.app { max-width: 760px; margin: 0 auto; padding: 24px; }
+header h1 { margin: 0 0 4px; }
+.tagline { margin: 0 0 16px; color: #5a6b4a; }
+.top-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.clear-btn { padding: 6px 12px; border: 2px solid #b0563a; border-radius: 8px; background: #f7ece8; color: #8a3a26; cursor: pointer; margin-bottom: 12px; }
