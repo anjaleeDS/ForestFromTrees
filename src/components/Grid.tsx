@@ -22,9 +22,11 @@ interface Props {
   residents: Resident[]
   season: Season
   onTileClick: (tile: TileT) => void
+  lightDebug?: boolean
+  provisionField?: boolean[][]
 }
 
-export function Grid({ placements, residents, season, onTileClick }: Props) {
+export function Grid({ placements, residents, season, onTileClick, lightDebug, provisionField }: Props) {
   const light = computeLightMap(placements, IDX)
 
   const cellMap = new Map<string, { placeableId: string; isAnchor: boolean }>()
@@ -53,6 +55,8 @@ export function Grid({ placements, residents, season, onTileClick }: Props) {
           residentEmoji={res ? ANIMAL_EMOJI[res.animalId] : undefined}
           seasonTint={SEASON_TINT[season]}
           onClick={() => onTileClick({ col, row })}
+          debugShade={lightDebug ? light[row][col] === 'shade' : false}
+          debugField={provisionField?.[row][col] ?? false}
         />,
       )
     }

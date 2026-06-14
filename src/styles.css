@@ -15,3 +15,6 @@
 .palette-item.erase.selected { border-color: #b0563a; }
 .palette-emoji { font-size: 22px; }
 .palette-label { font-size: 11px; }
+.tile-debug-shade { position: absolute; inset: 0; background: rgba(40,40,90,0.35); pointer-events: none; }
+.tile-debug-field { position: absolute; inset: 30%; border-radius: 50%; background: rgba(40,120,200,0.7); pointer-events: none; }
+.debug-controls { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
