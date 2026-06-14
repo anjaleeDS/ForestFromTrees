@@ -18,3 +18,22 @@
 .tile-debug-shade { position: absolute; inset: 0; background: rgba(40,40,90,0.35); pointer-events: none; }
 .tile-debug-field { position: absolute; inset: 30%; border-radius: 50%; background: rgba(40,120,200,0.7); pointer-events: none; }
 .debug-controls { display: flex; gap: 8px; align-items: center; margin: 8px 0; }
+.journal { margin-top: 16px; }
+.journal-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.journal-entry { border: 1px solid #cdd5bf; border-radius: 10px; padding: 10px; background: #f7f9f1; }
+.journal-entry.locked { opacity: 0.85; }
+.journal-emoji { font-size: 28px; }
+.journal-emoji.silhouette { filter: grayscale(1) brightness(0.4); }
+.journal-name { font-weight: 600; }
+.journal-species { font-weight: 400; color: #5a6b4a; font-size: 12px; }
+.journal-personality { font-size: 13px; color: #444; margin-top: 4px; }
+.journal-hint { font-size: 12px; color: #8a8a7a; font-style: italic; margin-top: 4px; }
+.stars, .arrival-stars { color: #d8a72a; letter-spacing: 2px; }
+.arrival-card { position: fixed; right: 20px; bottom: 20px; width: 260px; padding: 16px;
+  border-radius: 14px; background: #fffdf5; box-shadow: 0 8px 30px rgba(0,0,0,0.18);
+  text-align: center; animation: slidein 350ms ease-out; }
+@keyframes slidein { from { transform: translateY(30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.arrival-emoji { font-size: 40px; }
+.arrival-title { font-weight: 600; margin: 6px 0; }
+.arrival-personality { font-size: 13px; color: #555; margin: 8px 0; }
+.arrival-dismiss { padding: 6px 14px; border: none; border-radius: 8px; background: #5a6b4a; color: #fff; cursor: pointer; }
