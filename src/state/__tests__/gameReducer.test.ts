@@ -42,6 +42,15 @@ describe('gameReducer', () => {
     s = gameReducer(s, { type: 'DISMISS_ARRIVAL', animalId: first })
     expect(s.lastArrivals).not.toContain(first)
   })
+  it('season gates NEW arrivals: berry habitat in winter yields no rabbit; cycling to spring lets it move in', () => {
+    let s = initialState()
+    s = gameReducer(s, { type: 'SET_SEASON', season: 'winter' })
+    s = gameReducer(s, { type: 'PLACE', placeableId: 'berry', anchor: { col: 5, row: 5 } })
+    expect(s.residents.map(r => r.animalId)).not.toContain('clover') // berries dormant in winter
+    s = gameReducer(s, { type: 'SET_SEASON', season: 'spring' })
+    expect(s.residents.map(r => r.animalId)).toContain('clover')     // berries active -> rabbit arrives
+    expect(s.lastArrivals).toContain('clover')
+  })
   it('RESET returns a blank initial state (placements, residents, arrivals cleared)', () => {
     let s = initialState()
     s = gameReducer(s, { type: 'PLACE', placeableId: 'pond', anchor: { col: 2, row: 2 } })

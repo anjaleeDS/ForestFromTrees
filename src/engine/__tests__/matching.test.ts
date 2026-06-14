@@ -22,3 +22,18 @@ describe('matching basics', () => {
     expect(two.optionalsSatisfied).toBe(1)
   })
 })
+
+describe('seasonal matching (Phase 5)', () => {
+  // Rabbit requires cover_low + (seeds OR berries). A lone berry bush supplies
+  // both cover_low and berries — but berries go dormant in winter.
+  const berryOnly = [place('berry', 5, 5)]
+  it('rabbit qualifies in spring (berries active) but not in winter (berries dormant)', () => {
+    expect(evaluateAll(ANIMALS, berryOnly, idx, 'spring').get('clover')!.qualifies).toBe(true)
+    expect(evaluateAll(ANIMALS, berryOnly, idx, 'winter').get('clover')!.qualifies).toBe(false)
+  })
+  it('butterfly nectar need is gated by season (active spring/summer, dormant autumn/winter)', () => {
+    const flowers = [place('wildflowers', 5, 5)]
+    expect(evaluateAll(ANIMALS, flowers, idx, 'summer').get('flit')!.qualifies).toBe(true)
+    expect(evaluateAll(ANIMALS, flowers, idx, 'autumn').get('flit')!.qualifies).toBe(false)
+  })
+})
