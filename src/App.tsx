@@ -33,7 +33,7 @@ export default function App() {
     <div className="app">
       <header>
         <h1>Forest Habitat</h1>
-        <p className="tagline">Place habitat. Animals move in when it feels like home.</p>
+        <p className="tagline">Read each animal's clue in the journal, build the habitat it wants, and it'll move in.</p>
       </header>
 
       <div className="top-controls">
@@ -69,7 +69,7 @@ export default function App() {
         provisionField={field}
       />
 
-      <Journal residents={state.residents} />
+      <Journal residents={state.residents} stirring={state.stirring} />
 
       {currentArrival && (
         <ArrivalCard

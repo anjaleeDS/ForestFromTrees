@@ -7,6 +7,7 @@ const result = (animalId: string, qualifies: boolean, stars = 0, col = 0, row = 
   homeTile: qualifies ? { col, row } : null,
   homeLight: qualifies ? 'open' : null,
   optionalsSatisfied: 0, optionalsTotal: 0,
+  unmetRequired: qualifies ? 0 : 1,
 })
 const results = (...rs: MatchResult[]) => new Map(rs.map(r => [r.animalId, r]))
 

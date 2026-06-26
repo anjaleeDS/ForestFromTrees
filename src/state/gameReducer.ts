@@ -12,6 +12,7 @@ export interface GameState {
   placements: Placement[]
   season: Season
   residents: Resident[]
+  stirring: string[]   // animalIds one condition from arriving (not yet residents)
   lastArrivals: string[]
   nextId: number
   debug: { show: boolean; provisionType: ProvisionType }
@@ -28,7 +29,7 @@ export type Action =
 
 export function initialState(): GameState {
   return {
-    placements: [], season: 'spring', residents: [], lastArrivals: [], nextId: 1,
+    placements: [], season: 'spring', residents: [], stirring: [], lastArrivals: [], nextId: 1,
     debug: { show: false, provisionType: 'water' },
   }
 }
@@ -36,8 +37,12 @@ export function initialState(): GameState {
 function recompute(state: GameState, placements: Placement[], season: Season): GameState {
   const results = evaluateAll(ANIMALS, placements, IDX, season)
   const { residents, arrivals } = reconcile(state.residents, results)
+  const residentIds = new Set(residents.map(r => r.animalId))
+  const stirring = [...results]
+    .filter(([id, r]) => !residentIds.has(id) && r.unmetRequired === 1)
+    .map(([id]) => id)
   return {
-    ...state, placements, season, residents,
+    ...state, placements, season, residents, stirring,
     lastArrivals: [...state.lastArrivals, ...arrivals],
   }
 }

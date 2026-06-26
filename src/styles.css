@@ -50,3 +50,14 @@ header h1 { margin: 0 0 4px; }
 .tagline { margin: 0 0 16px; color: #5a6b4a; }
 .top-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .clear-btn { padding: 6px 12px; border: 2px solid #b0563a; border-radius: 8px; background: #f7ece8; color: #8a3a26; cursor: pointer; margin-bottom: 12px; }
+
+.journal-count { font-weight: 400; font-size: 13px; color: #5a6b4a; }
+.journal-entry { position: relative; }
+.journal-entry.stirring { background: #fbf4e2; border-color: #e0c067; }
+.journal-emoji.stirring-emoji { filter: grayscale(0.4) brightness(0.85); }
+.journal-hint.stirring { color: #a8761b; font-style: italic; }
+.journal-nearby-badge {
+  position: absolute; top: 8px; right: 8px;
+  background: #f0e2bd; color: #8a6a16; font-size: 11px;
+  padding: 2px 7px; border-radius: 8px;
+}

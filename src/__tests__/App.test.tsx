@@ -16,4 +16,10 @@ describe('App integration', () => {
     expect(screen.getByRole('dialog')).toBeInTheDocument()
     expect(screen.getByText(/moved in/i)).toBeInTheDocument()
   })
+
+  it('shows the discovered counter and the instructive tagline on load', () => {
+    render(<App />)
+    expect(screen.getByText(/0 of 6 discovered/i)).toBeInTheDocument()
+    expect(screen.getByText(/build the habitat it wants/i)).toBeInTheDocument()
+  })
 })

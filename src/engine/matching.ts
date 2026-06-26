@@ -37,15 +37,20 @@ export function evaluateAnimal(
   const required = animal.needs.filter(n => n.required)
   const optional = animal.needs.filter(n => !n.required)
   let best: { tile: Tile; light: Light; opt: number } | null = null
+  let minUnmet = Infinity
 
   for (let row = 0; row < ROWS; row++) {
     for (let col = 0; col < COLS; col++) {
       const home: Tile = { col, row }
       const light = lightAt(lightMap, home)
-      if (animal.light !== 'any' && animal.light !== light) continue
-      if (!required.every(n => needMet(home, n, placements, idx, season))) continue
-      const opt = optional.filter(n => needMet(home, n, placements, idx, season)).length
-      if (best === null || opt > best.opt) best = { tile: home, light, opt }
+      const lightPenalty = animal.light !== 'any' && animal.light !== light ? 1 : 0
+      const unmetNeeds = required.filter(n => !needMet(home, n, placements, idx, season)).length
+      const unmet = lightPenalty + unmetNeeds
+      if (unmet < minUnmet) minUnmet = unmet
+      if (lightPenalty === 0 && unmetNeeds === 0) {
+        const opt = optional.filter(n => needMet(home, n, placements, idx, season)).length
+        if (best === null || opt > best.opt) best = { tile: home, light, opt }
+      }
     }
   }
 
@@ -53,12 +58,14 @@ export function evaluateAnimal(
     return {
       animalId: animal.id, qualifies: false, homeTile: null, homeLight: null,
       stars: 0, optionalsSatisfied: 0, optionalsTotal: optional.length,
+      unmetRequired: minUnmet,
     }
   }
   const ratio = optional.length === 0 ? 0 : best.opt / optional.length
   return {
     animalId: animal.id, qualifies: true, homeTile: best.tile, homeLight: best.light,
     stars: clampStars(ratio), optionalsSatisfied: best.opt, optionalsTotal: optional.length,
+    unmetRequired: minUnmet,
   }
 }
 

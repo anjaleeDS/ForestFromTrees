@@ -37,3 +37,25 @@ describe('seasonal matching (Phase 5)', () => {
     expect(evaluateAll(ANIMALS, flowers, idx, 'autumn').get('flit')!.qualifies).toBe(false)
   })
 })
+
+describe('unmetRequired (stirring proximity)', () => {
+  it('is 0 for a qualifying animal', () => {
+    const r = evaluateAll(ANIMALS, [place('pond', 2, 2), place('grass', 4, 3)], idx, 'all').get('ribbit')!
+    expect(r.qualifies).toBe(true)
+    expect(r.unmetRequired).toBe(0)
+  })
+  it('is exactly 1 when a frog has water but no cover (one need away)', () => {
+    const r = evaluateAll(ANIMALS, [place('pond', 2, 2)], idx, 'all').get('ribbit')!
+    expect(r.qualifies).toBe(false)
+    expect(r.unmetRequired).toBe(1)
+  })
+  it('counts a wrong-light tile as the one missing condition (hedgehog with food, no shade)', () => {
+    const r = evaluateAll(ANIMALS, [place('log', 8, 6), place('pond', 11, 6)], idx, 'all').get('quill')!
+    expect(r.qualifies).toBe(false)
+    expect(r.unmetRequired).toBe(1)
+  })
+  it('is >= 2 when two conditions are missing (empty map, frog)', () => {
+    const r = evaluateAll(ANIMALS, [], idx, 'all').get('ribbit')!
+    expect(r.unmetRequired).toBeGreaterThanOrEqual(2)
+  })
+})

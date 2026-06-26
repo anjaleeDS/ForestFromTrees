@@ -57,6 +57,7 @@ export interface MatchResult {
   stars: number              // 0 if not qualifying
   optionalsSatisfied: number
   optionalsTotal: number
+  unmetRequired: number      // min unmet arrival conditions across all tiles (0 = qualifies)
 }
 
 export interface Resident {
